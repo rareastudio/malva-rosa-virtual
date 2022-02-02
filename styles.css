@@ -5,6 +5,50 @@ body{
     background: rgb(214, 178, 178);
 }
 
+#button{
+    position: absolute;
+    z-index: 10000;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2em;
+    color: white;
+    background: rgb(214, 178, 178);
+    padding: 20px 50px;
+    border: none;
+    border-radius: 50px;
+    opacity: 0.8;
+    top: 53vh;
+}
+
+#button:hover{
+    border-color: white;
+    border-width: 10px;
+    opacity: 0.9;
+}
+
+.titleOrigens{
+    color:rgb(214, 178, 178);
+    position: absolute;
+    z-index: 1000;
+    font-size: 5.5em;
+    width: 100vw;
+    text-align: center;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 30vh;
+}
+
+@keyframes toTop {
+    from {top: 30vh}
+    to {top: 0; margin: 0;}
+}
+
+.toTop{
+    animation-name: toTop;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
 #main-wrapper{
     width: 100vw;
     height: 100vh;
@@ -30,6 +74,13 @@ body{
     background-image: url("/logoweb2White.png");
     background-size: contain;
     background-repeat: no-repeat;
+}
+
+#gif{
+    width: 739px;
+    height: 415px;
+    background-image: url("/Malva-rosa 2.0_VLC360_RareaStudio-high.gif");
+    background-size: cover;
 }
 
 
@@ -59,7 +110,7 @@ a{
     /* Portrait styles here */
   
     body{
-        color: rgb(214, 178, 178);
+        color: rgb(206, 142, 142);
     }
     
     #main-wrapper{
@@ -87,11 +138,12 @@ a{
     #text-wrapper{
         position: absolute;
         bottom: 10px;
+        left: 10px;
     }
 
     #logo{
         background-image: url("/rarealogobig.png");
-        
+        background-position: center;
     }
 }
   
@@ -99,7 +151,7 @@ a{
     /* Portrait styles here */
   
     body{
-        color: rgb(214, 178, 178);
+        color: rgb(206, 142, 142);
     }
     
     #main-wrapper{
@@ -127,6 +179,7 @@ a{
     #text-wrapper{
         position: absolute;
         bottom: 10px;
+        left: 10px;
     }
 
     #logo{
@@ -139,6 +192,45 @@ a{
   @media screen and (orientation:landscape) and (max-height: 700px) {
     /* Landscape styles here */
   
+    body{
+        color: rgb(206, 142, 142);
+        overflow: hidden;
+    }
+    
+    #main-wrapper{
+        display: block;
+        width: 100vw;
+    }
+    #gifWrapper{
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+    }
+
+    #gif{
+        width: 100vw;
+        height: 100vh;
+    }
+
+    #logoCont{
+        top: 20px;
+        width: 50px;
+        height: 50px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1000;
+    }
+    
+    #text-wrapper{
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+    }
+
+    #logo{
+        background-image: url("/rarealogobig.png");
+        
+    }
 
   
   }
@@ -146,6 +238,45 @@ a{
   @media screen and (orientation:landscape) and (max-height: 399px) {
     /* Landscape styles here */
   
-  
+    
+    body{
+        color: rgb(206, 142, 142);
+        overflow: hidden;
+    }
+    
+    #main-wrapper{
+        display: block;
+        width: 100vw;
+    }
+    #gifWrapper{
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+    }
+
+    #gif{
+        width: 100vw;
+        height: 100vh;
+    }
+
+    #logoCont{
+        top: 20px;
+        width: 50px;
+        height: 50px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1000;
+    }
+    
+    #text-wrapper{
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+    }
+
+    #logo{
+        background-image: url("/rarealogobig.png");
+        
+    }
   
   }

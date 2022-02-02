@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malva-rosa virtual</title>
+    <title>Malva-rosa virtual - Proceso</title>
     <link rel="stylesheet" href="/styles.css">
 
     <meta name="keywords" content="Valencia 360, Valencia del futuro, Valencia capital del diseño, non architecture, rarea studio, malva-rosa, malvarrosa, playa, sea, mar">
@@ -16,20 +16,640 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 
-</head>
-<body>
-    <div id="main-wrapper">
-        <a id="logoCont" href="https://rareastudio.com" target="_blank">
-            <div id="logo"></div>
-        </a>
-        <a id="gifWrapper" href="https://vimeo.com/672086257/916ad0198a" target="_blank">
-            <img id="gif" class="centered" src="Malva-rosa 2.0_VLC360_RareaStudio-high.gif" alt="malva-rosa virtual gif">
-        </a>
-        <div id="text-wrapper">
-            <h1 class="title">Malva-rosa virtual</h1>
-            <h2 class="subtitle">Version 1.0<br>disponible próximamente</h2>
-        </div>
-    </div>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="displacement-shader.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js" integrity="sha512-UFPpekaMf0TrCIkPv9mRT3reo/HzSjkOLq57Rtzb+E1ej1TRUOes6J/Ge4uZXyxWA9b4i5DqSZns79YaUoJ2kA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/aframe-pointcloud-component/dist/aframe-pointcloud-component.min.js"></script>
+
+    
+    <script>     
+    
+      AFRAME.registerComponent('noise-disp', {
+      schema: {
+        size: {type: 'number', default: 0.5},
+        xSpeed: {type: 'number', default: 0.5},
+        ySpeed: {type: 'number', default: 0.5},
+        amp: {type: 'number', default: 1},
+        color: {type: 'color', default: '0x3452eb'},
+        divisions: {type: 'number', default: 200},
+      },
+      
+      
+      init: function(){
+        
+        var data = this.data;
+        
+        //initialise simplex noise instance
+        var noise = new SimplexNoise();
+        console.log('Hi noise!');
+        let audio = document.getElementById("audio");
+
+        //audio.play();
+        audio.crossOrigin = "anonymous";
+        play();
+        
+        //var plane = this.plane;
+        
+        var geometry, clock;
+        
+        function play(){
+          
+          //clock = new THREE.Clock();
+          
+          //AUDIO
+          /*var context = new AudioContext();
+          var src = context.createMediaElementSource(audio);
+          var analyser = context.createAnalyser();
+          src.connect(analyser);
+          analyser.connect(context.destination);
+          analyser.fftSize = 512;
+          var bufferLength = analyser.frequencyBinCount;
+          var dataArray = new Uint8Array(bufferLength);*/
+          
+          
+          //SCENE
+          var scene = document.querySelector('a-scene').object3D;
+          var geometry = new THREE.PlaneGeometry(9000, 4000, data.divisions, data.divisions);
+          //var geometry = new THREE.RingGeometry(0, 2000, 300, 200);
+          
+          const position = geometry.attributes.position;
+          position.usage = THREE.DynamicDrawUsage;
+          
+          //console.log(position);
+          
+          /*for (let i=0; i< position.count; i++) {
+            
+            const y = 35 * Math.sin(i/2);
+            position.setY(i, y);
+            
+          };*/
+          
+          /*var planeMaterial = new THREE.MeshLambertMaterial({
+            color: 0x85ccff,
+            side: THREE.DoubleSide,
+            wireframe: true
+          });*/
+          
+          var planeMaterial = new THREE.PointsMaterial({
+            color: 0xffffff,
+            size: data.size,
+          });
+          
+          //planeMaterial.vertexColors = THREE.VertexColors;
+          
+          /*for ( let i = 0; i < position.count; i ++ ) {
+            geometry.faces[i].vertexColors[i] = new THREE.Color(0xff0000);
+          };*/
+                    
+          //var geometryPlane = new THREE.Geometry().fromBufferGeometry( planeGeometry );
+
+          var plane = new THREE.Points(geometry, planeMaterial);
+          plane.rotation.x = -0.5 * Math.PI;
+          plane.position.set(0, -30, -2100);
+          
+          
+          scene.add(plane);
+                    
+          
+          render();
+          
+          function render() {
+            
+            //const delta = clock.getDelta();
+            //const time = clock.getElapsedTime() * 10;
+            
+            /*analyser.getByteFrequencyData(dataArray);
+
+            var lowerHalfArray = dataArray.slice(0, dataArray.length / 2 - 1);
+            var upperHalfArray = dataArray.slice(
+              dataArray.length / 2 - 1,
+              dataArray.length - 1
+            );
+
+            var overallAvg = avg(dataArray);
+            var lowerMax = max(lowerHalfArray);
+            var lowerAvg = avg(lowerHalfArray);
+            var upperMax = max(upperHalfArray);
+            var upperAvg = avg(upperHalfArray);
+
+            var lowerMaxFr = lowerMax / lowerHalfArray.length;
+            var lowerAvgFr = lowerAvg / lowerHalfArray.length;
+            var upperMaxFr = upperMax / upperHalfArray.length;
+            var upperAvgFr = upperAvg / upperHalfArray.length;
+            
+            var distortionFr = modulate(lowerAvgFr, 0, 1, 0.5, 4);*/
+            //console.log(distortionFr);
+
+            const position = geometry.attributes.position;
+            //const arrays = geometry.attributes.position.array;
+            //console.log(position.count);
+            
+            let xSpeed = 1;
+              
+            /*let input = document.querySelector('#myRange');
+            input.addEventListener('change', () => {
+              xSpeed = event.target.value * 0.1;
+              console.log(xSpeed);
+            });*/
+            
+            for ( let i = 0; i < position.count; i ++ ) {
+             
+              var amp = 1;
+              var time = Date.now();
+              //var distance = lowerAvgFr * amp;
+              //console.log(distance);
+              //let noises = noise.noise2D(position.getX(i) + time * 0.0003, position.getY(i) + time * 0.0001);
+              //var distance = noises * distortionFr * amp;
+              //var distance = noises * amp;
+                          
+              //position.setZ(i, distance);
+              //position.setZ(i, distance);
+              
+              //let noisesX = noise.noise2D(position.getZ(i) + time * 0.0000003, position.getY(i) + time * 0.00001);
+              let noisesX = noise.noise2D(position.getZ(i), position.getY(i));
+              //var distanceX = noisesX * distortionFr * amp;
+              var distanceX = noisesX * amp;
+              
+              //position.setX(i, distanceX);
+              position.setX(i, position.getX(i) + distanceX * 5);              
+              
+              let noisesY = noise.noise2D(position.getZ(i), position.getX(i));
+              var distanceY = noisesY * amp;
+              
+              position.setY(i, position.getY(i) + distanceY * 3);
+              //position.setX(i, distance);
+              
+              let color = new THREE.Color(0xfafeff);
+              planeMaterial.color.set(color);
+              planeMaterial.needsUpdate = true;
+
+            }
+
+            position.needsUpdate = true;
+
+            requestAnimationFrame(render);
+          }
+          
+          
+        
+          //some helper functions here
+        function fractionate(val, minVal, maxVal) {
+          return (val - minVal) / (maxVal - minVal);
+        }
+
+        function modulate(val, minVal, maxVal, outMin, outMax) {
+          var fr = fractionate(val, minVal, maxVal);
+          var delta = outMax - outMin;
+          return outMin + fr * delta;
+        }
+
+        function avg(arr) {
+          var total = arr.reduce(function(sum, b) {
+            return sum + b;
+          });
+          return total / arr.length;
+        }
+
+        function max(arr) {
+          return arr.reduce(function(a, b) {
+            return Math.max(a, b);
+          });
+        }
+          
+          
+        }
+        
+        
+      },
+            
+    })
+    
+    </script>
+
+    <script src="https://unpkg.com/aframe-randomizer-components@^3.0.1/dist/aframe-randomizer-components.min.js"></script>
+    <!--<script src="https://unpkg.com/aframe-particle-system-component@1.0.5/dist/aframe-particle-system-component.min.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/gh/IdeaSpaceVR/aframe-particle-system-component@master/dist/aframe-particle-system-component.min.js"></script>
+  </head>
+  <body>
+    <h1 class="titleOrigens">Malva-rosa virtual</h1>
+    <button id="button">
+      Loading
+    </button>
+    <audio style="position: absolute; z-index: 3000; display: none;"
+      id="audio"
+      src="https://cdn.glitch.com/8acf8894-95eb-4ab9-ba49-ae674b5ea17b%2F400632__inspectorj__reduced11025Hz.mp3?v=1623240573801"
+      controls
+      crossorigin="anonymous"
+    ></audio>
+    
+    
+    <a-scene vr-mode-ui="enabled: false">
+          
+      <a-sky position="0 -30 0" radius="10000" src="https://cdn.glitch.com/8acf8894-95eb-4ab9-ba49-ae674b5ea17b%2FpanoramaskyTest.jpg?v=1624271248415" rotation="0 -90 0" segments-width="20"></a-sky>
+      <!--<a-sky color="green"></a-sky>-->
+
+      <a-entity id="player"
+                camera
+                networked="template:#avatar-template;attachTemplateToLocal:false;"
+                position="0 1.6 0"
+                spawn-in-circle="radius:3"
+                wasd-controls="fly: true; acceleration: 35"
+                look-controls>
+        <a-sphere class="head"
+          visible="false"
+          random-color
+        ></a-sphere>
+      </a-entity>
+      
+      <a-pointcloud 
+        scale="30 30 30" 
+        position="-1000 -15 160" 
+        src="url(https://cdn.glitch.com/8acf8894-95eb-4ab9-ba49-ae674b5ea17b%2Fbarco_con_low_test_cutCC.ply?v=1624202186856)" 
+        size="0.8"
+        rotation="0 45 0"
+      ></a-pointcloud>
+      
+      
+      <a-pointcloud 
+        scale="8 8 8" 
+        position="-200 0 -60" 
+        src="url(https://cdn.glitch.com/7244fbf4-0519-4a2a-af6d-7d7ab794128d%2Fkidsculpt_Test_points.ply?v=1625927683101)" 
+        size="0.5"
+      ></a-pointcloud>
+      
+      <a-pointcloud 
+        scale="8 8 8" 
+        position="-200 0 -60" 
+        src="url(https://cdn.glitch.com/7244fbf4-0519-4a2a-af6d-7d7ab794128d%2Fkidsculpt_Test_points2.ply?v=1625947208526)" 
+        size="2"
+      ></a-pointcloud>
+      
+      
+      
+      <!--BEACHSEA -->
+      
+      <a-entity id="beachsea">
+      
+        <a-entity position="0 0 1650" rotation="0 180 0" scale="0.1 0.1 0.1">
+          <a-pointcloud
+            position="0 0 0" 
+            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsea1.ply?v=1629221754167)" 
+            size="1"
+          ></a-pointcloud>
+          <a-pointcloud
+            position="0 0 0" 
+            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsea2.ply?v=1629220320531)" 
+            size="3"
+          ></a-pointcloud>
+          <a-pointcloud
+            position="0 0 0" 
+            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsea3.ply?v=1629220320259)" 
+            size="5"
+          ></a-pointcloud>
+
+          <a-pointcloud
+            position="0 0 0" 
+            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsand1.ply?v=1629220330949)" 
+            size="1"
+          ></a-pointcloud>
+          <a-pointcloud
+            position="0 0 0" 
+            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsand2.ply?v=1629220331012)" 
+            size="3"
+          ></a-pointcloud>
+          <a-pointcloud
+            position="0 0 0" 
+            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsand3.ply?v=1629220326810)" 
+            size="5"
+          ></a-pointcloud>
+
+        </a-entity>
+
+        <a-entity position="2000 0 1650" rotation="0 180 0" scale="0.1 0.1 0.1">
+          <a-pointcloud
+            position="0 0 0" 
+            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsea1.ply?v=1629221754167)" 
+            size="1"
+          ></a-pointcloud>
+          <a-pointcloud
+            position="0 0 0" 
+            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsea2.ply?v=1629220320531)" 
+            size="3"
+          ></a-pointcloud>
+          <a-pointcloud
+            position="0 0 0" 
+            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsea3.ply?v=1629220320259)" 
+            size="5"
+          ></a-pointcloud>
+
+          <a-pointcloud
+            position="0 0 0" 
+            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsand1.ply?v=1629220330949)" 
+            size="1"
+          ></a-pointcloud>
+          <a-pointcloud
+            position="0 0 0" 
+            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsand2.ply?v=1629220331012)" 
+            size="3"
+          ></a-pointcloud>
+          <a-pointcloud
+            position="0 0 0" 
+            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsand3.ply?v=1629220326810)" 
+            size="5"
+          ></a-pointcloud>
+
+        </a-entity> 
+
+        <a-entity position="4000 0 1650" rotation="0 180 0" scale="0.1 0.1 0.1">
+          <a-pointcloud
+            position="0 0 0" 
+            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsea1.ply?v=1629221754167)" 
+            size="1"
+          ></a-pointcloud>
+          <a-pointcloud
+            position="0 0 0" 
+            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsea2.ply?v=1629220320531)" 
+            size="3"
+          ></a-pointcloud>
+          <a-pointcloud
+            position="0 0 0" 
+            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsea3.ply?v=1629220320259)" 
+            size="5"
+          ></a-pointcloud>
+
+          <a-pointcloud
+            position="0 0 0" 
+            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsand1.ply?v=1629220330949)" 
+            size="1"
+          ></a-pointcloud>
+          <a-pointcloud
+            position="0 0 0" 
+            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsand2.ply?v=1629220331012)" 
+            size="3"
+          ></a-pointcloud>
+          <a-pointcloud
+            position="0 0 0" 
+            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsand3.ply?v=1629220326810)" 
+            size="5"
+          ></a-pointcloud>
+
+        </a-entity> 
+
+        <a-entity position="-2000 0 1650" rotation="0 180 0" scale="0.1 0.1 0.1">
+          <a-pointcloud
+            position="0 0 0" 
+            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsea1.ply?v=1629221754167)" 
+            size="1"
+          ></a-pointcloud>
+          <a-pointcloud
+            position="0 0 0" 
+            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsea2.ply?v=1629220320531)" 
+            size="3"
+          ></a-pointcloud>
+          <a-pointcloud
+            position="0 0 0" 
+            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsea3.ply?v=1629220320259)" 
+            size="5"
+          ></a-pointcloud>
+
+          <a-pointcloud
+            position="0 0 0" 
+            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsand1.ply?v=1629220330949)" 
+            size="1"
+          ></a-pointcloud>
+          <a-pointcloud
+            position="0 0 0" 
+            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsand2.ply?v=1629220331012)" 
+            size="3"
+          ></a-pointcloud>
+          <a-pointcloud
+            position="0 0 0" 
+            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsand3.ply?v=1629220326810)" 
+            size="5"
+          ></a-pointcloud>
+
+        </a-entity> 
+
+        <a-entity position="-4000 0 1650" rotation="0 180 0" scale="0.1 0.1 0.1">
+          <a-pointcloud
+            position="0 0 0" 
+            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsea1.ply?v=1629221754167)" 
+            size="1"
+          ></a-pointcloud>
+          <a-pointcloud
+            position="0 0 0" 
+            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsea2.ply?v=1629220320531)" 
+            size="3"
+          ></a-pointcloud>
+          <a-pointcloud
+            position="0 0 0" 
+            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsea3.ply?v=1629220320259)" 
+            size="5"
+          ></a-pointcloud>
+
+          <a-pointcloud
+            position="0 0 0" 
+            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsand1.ply?v=1629220330949)" 
+            size="1"
+          ></a-pointcloud>
+          <a-pointcloud
+            position="0 0 0" 
+            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsand2.ply?v=1629220331012)" 
+            size="3"
+          ></a-pointcloud>
+          <a-pointcloud
+            position="0 0 0" 
+            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsand3.ply?v=1629220326810)" 
+            size="5"
+          ></a-pointcloud>
+
+
+        </a-entity> 
+        
+      </a-entity>
+      
+      <!--BUSHES-->
+      <a-entity id="bushesUtop">
+        
+        <a-entity position="0 0 -400" rotation="0 180 0" scale="0.1 0.1 0.1">
+          
+            <a-pointcloud
+              position="0 0 0" 
+              src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fbushes1.ply?v=1629222174959)" 
+              size="5"
+            ></a-pointcloud>
+
+            <a-pointcloud
+              position="0 0 0" 
+              src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fbushes2.ply?v=1629222173040)" 
+              size="7"
+            ></a-pointcloud>
+
+        </a-entity>
+        
+        <a-entity position="-2000 0 -400" rotation="0 180 0" scale="0.1 0.1 0.1">
+        
+          <a-pointcloud
+            position="0 0 0" 
+            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fbushes1.ply?v=1629222174959)" 
+            size="3"
+          ></a-pointcloud>
+
+          <a-pointcloud
+            position="0 0 0" 
+            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fbushes2.ply?v=1629222173040)" 
+            size="5"
+          ></a-pointcloud>
+          
+        </a-entity>
+        
+        <a-entity position="-4000 0 -400" rotation="0 180 0" scale="0.1 0.1 0.1">
+          
+          <a-pointcloud
+            position="0 0 0" 
+            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fbushes1.ply?v=1629222174959)" 
+            size="1"
+          ></a-pointcloud>
+
+          <a-pointcloud
+            position="0 0 0" 
+            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fbushes2.ply?v=1629222173040)" 
+            size="2"
+          ></a-pointcloud>
+        
+        </a-entity>
+      
+      </a-entity>
+      
+      
+      <!--CHAIRS-->
+      <a-entity position="0 0 1650" rotation="0 180 0" scale="0.1 0.1 0.1">
+        <a-pointcloud
+          position="0 0 0" 
+          src="url(https://cdn.glitch.global/15fc2989-d852-4927-94b9-75f9322297e0/newchairs1_b.ply?v=1643507159910)" 
+          size="0.25"
+        ></a-pointcloud>   
+        <a-pointcloud
+          position="0 0 0" 
+          src="url(https://cdn.glitch.global/15fc2989-d852-4927-94b9-75f9322297e0/newchairs2_b.ply?v=1643507158061)" 
+          size="0.5"
+        ></a-pointcloud>  
+        <a-pointcloud
+          position="0 0 0" 
+          src="url(https://cdn.glitch.global/15fc2989-d852-4927-94b9-75f9322297e0/newchairs3_b.ply?v=1643507158005)" 
+          size="1"
+        ></a-pointcloud>
+        
+      </a-entity>
+      
+      <!--SKYES 
+      
+      <a-entity>
+      
+        <a-entity>
+        
+          <a-pointcloud
+            position="0 0 0" 
+            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsky2.ply?v=1629312537943)" 
+            size="20"
+            scale="80 80 80"
+            rotation="0 180 0"
+          ></a-pointcloud>
+          <a-pointcloud
+            position="0 0 0" 
+            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsky2.ply?v=1629312537943)" 
+            size="5"
+            scale="60 60 60"
+            rotation="0 190 0"
+          ></a-pointcloud> 
+          <a-pointcloud
+            position="0 0 0" 
+            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsky3.ply?v=1629312538145)" 
+            size="10"
+            scale="40 40 40"
+            rotation="0 180 0"
+          ></a-pointcloud> 
+          <a-pointcloud
+            position="0 0 0" 
+            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsky3.ply?v=1629312538145)" 
+            size="5"
+            scale="10 10 10"
+            rotation="0 200 0"
+          ></a-pointcloud>
+          <a-pointcloud
+            position="0 0 0" 
+            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsky2.ply?v=1629312537943)" 
+            size="1"
+            scale="5 5 5"
+            rotation="0 190 0"
+          ></a-pointcloud> 
+          
+        </a-entity>
+      
+      </a-entity>-->
+      
+      <!-- Blue point light, 5 meters in the air. 
+      <a-light type="point" color="blue" position="-200 -30 -60"></a-light>-->
+      
+      <!--SHADOWS -->
+      <a-entity position="0 0 1650" rotation="0 180 0" scale="0.1 0.1 0.1">
+        <a-pointcloud
+          position="0 0 0" 
+          src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsandshadow2.ply?v=1629325247530)" 
+          size="1"
+        ></a-pointcloud> 
+        <a-pointcloud
+          position="0 60 0" 
+          src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2FseaShadow1.ply?v=1629326058508)" 
+          size="3"
+        ></a-pointcloud> 
+      </a-entity>
+      
+      <a-entity id="sea"></a-entity>
+      
+      <a-entity id="rig" position="25 80 420">
+        <a-camera id="camera" wasd-controls="fly: true"></a-camera>
+      </a-entity>
+
+     
+    </a-scene>
+    
+    <script>
+    
+      let sea = document.getElementById('sea');
+      let sea2 = document.getElementById('sea2');
+      let button = document.getElementById('button');
+      let audio = document.getElementById('audio');
+      let title = document.querySelector('.titleOrigens');
+      let scene = document.querySelector('a-scene');
+      
+        scene.addEventListener('loaded', () => {
+            button.innerHTML = "Enter";
+            button.addEventListener('click', ()=>{
+                button.style.display = "none";
+                sea.setAttribute('noise-disp', {
+                size: 2,
+                color: '#ebdaea',
+                amp: 1,
+                xSpeed: 2,
+                ySpeed: 0.1,
+                divisions: 500,
+                });
+                audio.play();
+                audio.crossOrigin = "anonymous";
+                title.classList.add('toTop');
+
+            });
+
+        })
+
+      
+      
+      /*window.setTimeout(function(){
+              document.querySelector('a-scene').components.screenshot.getCanvas('equirectangular');
+      }, 6000);*/
+    
+    </script>
     
 </body>
 </html>
