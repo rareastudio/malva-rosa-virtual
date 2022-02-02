@@ -237,34 +237,41 @@
     </button>
     <audio style="position: absolute; z-index: 3000; display: none;"
       id="audio"
-      src="https://cdn.glitch.com/8acf8894-95eb-4ab9-ba49-ae674b5ea17b%2F400632__inspectorj__reduced11025Hz.mp3?v=1623240573801"
+      src="/assets/RS_audioSearedux2.mp3"
       controls
       crossorigin="anonymous"
     ></audio>
     
     
-    <a-scene vr-mode-ui="enabled: false">
-          
-      <a-sky position="0 -30 0" radius="10000" src="https://cdn.glitch.com/8acf8894-95eb-4ab9-ba49-ae674b5ea17b%2FpanoramaskyTest.jpg?v=1624271248415" rotation="0 -90 0" segments-width="20"></a-sky>
-      <!--<a-sky color="green"></a-sky>-->
+    <a-scene loading-screen="enabled: false" vr-mode-ui="enabled: false">
 
-      <a-entity id="player"
-                camera
-                networked="template:#avatar-template;attachTemplateToLocal:false;"
-                position="0 1.6 0"
-                spawn-in-circle="radius:3"
-                wasd-controls="fly: true; acceleration: 35"
-                look-controls>
-        <a-sphere class="head"
-          visible="false"
-          random-color
-        ></a-sphere>
-      </a-entity>
+    <a-assets>
+        <img id="background" src="assets/panoramaskyTest.jpg">
+        <a-asset-item response-type="arraybuffer" id="barco" src="/assets/barco_con_low_test_cutCC.ply"></a-asset-item>
+        <a-asset-item response-type="arraybuffer" id="kid1" src="assets/kidsculpt_Test_points.ply"></a-asset-item>
+        <a-asset-item response-type="arraybuffer" id="kid2" src="assets/kidsculpt_Test_points2.ply"></a-asset-item>
+        <a-asset-item response-type="arraybuffer" id="sea1" src="assets/sea1.ply"></a-asset-item>
+        <a-asset-item response-type="arraybuffer" id="sea2" src="assets/sea2.ply"></a-asset-item>
+        <a-asset-item response-type="arraybuffer" id="sea3" src="assets/sea3.ply"></a-asset-item>
+        <a-asset-item response-type="arraybuffer" id="sand1" src="assets/sand1.ply"></a-asset-item>
+        <a-asset-item response-type="arraybuffer" id="sand2" src="assets/sand2.ply"></a-asset-item>
+        <a-asset-item response-type="arraybuffer" id="sand3" src="assets/sand3.ply"></a-asset-item>
+        <a-asset-item response-type="arraybuffer" id="bushes1" src="assets/bushes1.ply"></a-asset-item>
+        <a-asset-item response-type="arraybuffer" id="bushes2" src="assets/bushes2.ply"></a-asset-item>
+        <a-asset-item response-type="arraybuffer" id="chairs1" src="assets/newchairs1_b.ply"></a-asset-item>
+        <a-asset-item response-type="arraybuffer" id="chairs2" src="assets/newchairs2_b.ply"></a-asset-item>
+        <a-asset-item response-type="arraybuffer" id="chairs3" src="assets/newchairs3_b.ply"></a-asset-item>
+        <a-asset-item response-type="arraybuffer" id="seaShadow" src="assets/seaShadow1.ply"></a-asset-item>
+        <a-asset-item response-type="arraybuffer" id="sandShadow" src="assets/sandshadow2.ply"></a-asset-item>
+    </a-assets>
+          
+      <a-sky position="0 -30 0" radius="10000" src="#background" rotation="0 -90 0" segments-width="20"></a-sky>
+      <!--<a-sky color="green"></a-sky>-->
       
       <a-pointcloud 
         scale="30 30 30" 
         position="-1000 -15 160" 
-        src="url(https://cdn.glitch.com/8acf8894-95eb-4ab9-ba49-ae674b5ea17b%2Fbarco_con_low_test_cutCC.ply?v=1624202186856)" 
+        src="#barco" 
         size="0.8"
         rotation="0 45 0"
       ></a-pointcloud>
@@ -273,14 +280,14 @@
       <a-pointcloud 
         scale="8 8 8" 
         position="-200 0 -60" 
-        src="url(https://cdn.glitch.com/7244fbf4-0519-4a2a-af6d-7d7ab794128d%2Fkidsculpt_Test_points.ply?v=1625927683101)" 
+        src="#kid1" 
         size="0.5"
       ></a-pointcloud>
       
       <a-pointcloud 
         scale="8 8 8" 
         position="-200 0 -60" 
-        src="url(https://cdn.glitch.com/7244fbf4-0519-4a2a-af6d-7d7ab794128d%2Fkidsculpt_Test_points2.ply?v=1625947208526)" 
+        src="#kid2" 
         size="2"
       ></a-pointcloud>
       
@@ -293,173 +300,173 @@
         <a-entity position="0 0 1650" rotation="0 180 0" scale="0.1 0.1 0.1">
           <a-pointcloud
             position="0 0 0" 
-            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsea1.ply?v=1629221754167)" 
+            src="#sea1" 
             size="1"
           ></a-pointcloud>
           <a-pointcloud
             position="0 0 0" 
-            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsea2.ply?v=1629220320531)" 
+            src="#sea2" 
             size="3"
           ></a-pointcloud>
           <a-pointcloud
             position="0 0 0" 
-            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsea3.ply?v=1629220320259)" 
+            src="#sea3" 
             size="5"
           ></a-pointcloud>
 
           <a-pointcloud
             position="0 0 0" 
-            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsand1.ply?v=1629220330949)" 
+            src="#sand1" 
             size="1"
           ></a-pointcloud>
           <a-pointcloud
             position="0 0 0" 
-            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsand2.ply?v=1629220331012)" 
+            src="#sand2" 
             size="3"
           ></a-pointcloud>
           <a-pointcloud
             position="0 0 0" 
-            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsand3.ply?v=1629220326810)" 
+            src="#sand3" 
             size="5"
           ></a-pointcloud>
 
         </a-entity>
 
         <a-entity position="2000 0 1650" rotation="0 180 0" scale="0.1 0.1 0.1">
-          <a-pointcloud
+            <a-pointcloud
             position="0 0 0" 
-            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsea1.ply?v=1629221754167)" 
+            src="#sea1" 
             size="1"
           ></a-pointcloud>
           <a-pointcloud
             position="0 0 0" 
-            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsea2.ply?v=1629220320531)" 
+            src="#sea2" 
             size="3"
           ></a-pointcloud>
           <a-pointcloud
             position="0 0 0" 
-            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsea3.ply?v=1629220320259)" 
+            src="#sea3" 
             size="5"
           ></a-pointcloud>
 
           <a-pointcloud
             position="0 0 0" 
-            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsand1.ply?v=1629220330949)" 
+            src="#sand1" 
             size="1"
           ></a-pointcloud>
           <a-pointcloud
             position="0 0 0" 
-            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsand2.ply?v=1629220331012)" 
+            src="#sand2" 
             size="3"
           ></a-pointcloud>
           <a-pointcloud
             position="0 0 0" 
-            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsand3.ply?v=1629220326810)" 
+            src="#sand3" 
             size="5"
           ></a-pointcloud>
 
         </a-entity> 
 
         <a-entity position="4000 0 1650" rotation="0 180 0" scale="0.1 0.1 0.1">
-          <a-pointcloud
+            <a-pointcloud
             position="0 0 0" 
-            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsea1.ply?v=1629221754167)" 
+            src="#sea1" 
             size="1"
           ></a-pointcloud>
           <a-pointcloud
             position="0 0 0" 
-            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsea2.ply?v=1629220320531)" 
+            src="#sea2" 
             size="3"
           ></a-pointcloud>
           <a-pointcloud
             position="0 0 0" 
-            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsea3.ply?v=1629220320259)" 
+            src="#sea3" 
             size="5"
           ></a-pointcloud>
 
           <a-pointcloud
             position="0 0 0" 
-            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsand1.ply?v=1629220330949)" 
+            src="#sand1" 
             size="1"
           ></a-pointcloud>
           <a-pointcloud
             position="0 0 0" 
-            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsand2.ply?v=1629220331012)" 
+            src="#sand2" 
             size="3"
           ></a-pointcloud>
           <a-pointcloud
             position="0 0 0" 
-            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsand3.ply?v=1629220326810)" 
+            src="#sand3" 
             size="5"
           ></a-pointcloud>
 
         </a-entity> 
 
         <a-entity position="-2000 0 1650" rotation="0 180 0" scale="0.1 0.1 0.1">
-          <a-pointcloud
+            <a-pointcloud
             position="0 0 0" 
-            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsea1.ply?v=1629221754167)" 
+            src="#sea1" 
             size="1"
           ></a-pointcloud>
           <a-pointcloud
             position="0 0 0" 
-            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsea2.ply?v=1629220320531)" 
+            src="#sea2" 
             size="3"
           ></a-pointcloud>
           <a-pointcloud
             position="0 0 0" 
-            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsea3.ply?v=1629220320259)" 
+            src="#sea3" 
             size="5"
           ></a-pointcloud>
 
           <a-pointcloud
             position="0 0 0" 
-            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsand1.ply?v=1629220330949)" 
+            src="#sand1" 
             size="1"
           ></a-pointcloud>
           <a-pointcloud
             position="0 0 0" 
-            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsand2.ply?v=1629220331012)" 
+            src="#sand2" 
             size="3"
           ></a-pointcloud>
           <a-pointcloud
             position="0 0 0" 
-            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsand3.ply?v=1629220326810)" 
+            src="#sand3" 
             size="5"
           ></a-pointcloud>
 
         </a-entity> 
 
         <a-entity position="-4000 0 1650" rotation="0 180 0" scale="0.1 0.1 0.1">
-          <a-pointcloud
+            <a-pointcloud
             position="0 0 0" 
-            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsea1.ply?v=1629221754167)" 
+            src="#sea1" 
             size="1"
           ></a-pointcloud>
           <a-pointcloud
             position="0 0 0" 
-            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsea2.ply?v=1629220320531)" 
+            src="#sea2" 
             size="3"
           ></a-pointcloud>
           <a-pointcloud
             position="0 0 0" 
-            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsea3.ply?v=1629220320259)" 
+            src="#sea3" 
             size="5"
           ></a-pointcloud>
 
           <a-pointcloud
             position="0 0 0" 
-            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsand1.ply?v=1629220330949)" 
+            src="#sand1" 
             size="1"
           ></a-pointcloud>
           <a-pointcloud
             position="0 0 0" 
-            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsand2.ply?v=1629220331012)" 
+            src="#sand2" 
             size="3"
           ></a-pointcloud>
           <a-pointcloud
             position="0 0 0" 
-            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsand3.ply?v=1629220326810)" 
+            src="#sand3" 
             size="5"
           ></a-pointcloud>
 
@@ -468,20 +475,20 @@
         
       </a-entity>
       
-      <!--BUSHES-->
+      <!--BUSHES -->
       <a-entity id="bushesUtop">
         
         <a-entity position="0 0 -400" rotation="0 180 0" scale="0.1 0.1 0.1">
           
             <a-pointcloud
               position="0 0 0" 
-              src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fbushes1.ply?v=1629222174959)" 
+              src="#bushes1" 
               size="5"
             ></a-pointcloud>
 
             <a-pointcloud
               position="0 0 0" 
-              src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fbushes2.ply?v=1629222173040)" 
+              src="#bushes2" 
               size="7"
             ></a-pointcloud>
 
@@ -489,32 +496,32 @@
         
         <a-entity position="-2000 0 -400" rotation="0 180 0" scale="0.1 0.1 0.1">
         
-          <a-pointcloud
+            <a-pointcloud
             position="0 0 0" 
-            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fbushes1.ply?v=1629222174959)" 
-            size="3"
+            src="#bushes1" 
+            size="5"
           ></a-pointcloud>
 
           <a-pointcloud
             position="0 0 0" 
-            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fbushes2.ply?v=1629222173040)" 
-            size="5"
+            src="#bushes2" 
+            size="7"
           ></a-pointcloud>
           
         </a-entity>
         
         <a-entity position="-4000 0 -400" rotation="0 180 0" scale="0.1 0.1 0.1">
           
-          <a-pointcloud
+            <a-pointcloud
             position="0 0 0" 
-            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fbushes1.ply?v=1629222174959)" 
-            size="1"
+            src="#bushes1" 
+            size="5"
           ></a-pointcloud>
 
           <a-pointcloud
             position="0 0 0" 
-            src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fbushes2.ply?v=1629222173040)" 
-            size="2"
+            src="#bushes2" 
+            size="7"
           ></a-pointcloud>
         
         </a-entity>
@@ -526,17 +533,17 @@
       <a-entity position="0 0 1650" rotation="0 180 0" scale="0.1 0.1 0.1">
         <a-pointcloud
           position="0 0 0" 
-          src="url(https://cdn.glitch.global/15fc2989-d852-4927-94b9-75f9322297e0/newchairs1_b.ply?v=1643507159910)" 
+          src="#chairs1" 
           size="0.25"
         ></a-pointcloud>   
         <a-pointcloud
           position="0 0 0" 
-          src="url(https://cdn.glitch.global/15fc2989-d852-4927-94b9-75f9322297e0/newchairs2_b.ply?v=1643507158061)" 
+          src="#chairs2" 
           size="0.5"
         ></a-pointcloud>  
         <a-pointcloud
           position="0 0 0" 
-          src="url(https://cdn.glitch.global/15fc2989-d852-4927-94b9-75f9322297e0/newchairs3_b.ply?v=1643507158005)" 
+          src="#chairs3" 
           size="1"
         ></a-pointcloud>
         
@@ -595,12 +602,12 @@
       <a-entity position="0 0 1650" rotation="0 180 0" scale="0.1 0.1 0.1">
         <a-pointcloud
           position="0 0 0" 
-          src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2Fsandshadow2.ply?v=1629325247530)" 
+          src="#sandShadow" 
           size="1"
         ></a-pointcloud> 
         <a-pointcloud
           position="0 60 0" 
-          src="url(https://cdn.glitch.com/6366bd8c-de2b-4016-8271-b709030e2e53%2FseaShadow1.ply?v=1629326058508)" 
+          src="#seaShadow" 
           size="3"
         ></a-pointcloud> 
       </a-entity>
@@ -608,7 +615,7 @@
       <a-entity id="sea"></a-entity>
       
       <a-entity id="rig" position="25 80 420">
-        <a-camera id="camera" wasd-controls="fly: true"></a-camera>
+        <a-camera id="camera" look-controls wasd-controls="fly: true"></a-camera>
       </a-entity>
 
      
