@@ -38,6 +38,11 @@ body{
     top: 30vh;
 }
 
+@keyframes opacityBlink{
+    from {opacity: 0}
+    to {opacity: 1};
+}
+
 @keyframes toTop {
     from {top: 30vh}
     to {top: 0; margin: 0;}
@@ -47,6 +52,12 @@ body{
     animation-name: toTop;
     animation-duration: 2s;
     animation-fill-mode: forwards;
+}
+
+.opacityBlink{
+    animation-name: opacityBlink;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
 }
 
 #main-wrapper{
@@ -145,6 +156,10 @@ a{
         background-image: url("/rarealogobig.png");
         background-position: center;
     }
+    
+    .titleOrigens{
+        top: 10vh;
+    }
 }
   
   @media screen and (orientation:portrait) and (max-width: 390px) {
@@ -185,6 +200,10 @@ a{
     #logo{
         background-image: url("/rarealogobig.png");
         
+    }
+
+    .titleOrigens{
+        top: 10vh;
     }
 }
   

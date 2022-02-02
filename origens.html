@@ -173,10 +173,10 @@
               //position.setX(i, distanceX);
               position.setX(i, position.getX(i) + distanceX * 5);              
               
-              let noisesY = noise.noise2D(position.getZ(i), position.getX(i));
+              /*let noisesY = noise.noise2D(position.getZ(i), position.getX(i));
               var distanceY = noisesY * amp;
               
-              position.setY(i, position.getY(i) + distanceY * 3);
+              position.setY(i, position.getY(i) + distanceY * 3);*/
               //position.setX(i, distance);
               
               let color = new THREE.Color(0xfafeff);
@@ -232,7 +232,7 @@
   </head>
   <body>
     <h1 class="titleOrigens">Malva-rosa virtual</h1>
-    <button id="button">
+    <button id="button" class="opacityBlink">
       Loading
     </button>
     <audio style="position: absolute; z-index: 3000; display: none;"
@@ -250,15 +250,15 @@
         <a-asset-item response-type="arraybuffer" id="barco" src="/assets/barco_con_low_test_cutCC.ply"></a-asset-item>
         <a-asset-item response-type="arraybuffer" id="kid1" src="assets/kidsculpt_Test_points.ply"></a-asset-item>
         <a-asset-item response-type="arraybuffer" id="kid2" src="assets/kidsculpt_Test_points2.ply"></a-asset-item>
-        <a-asset-item response-type="arraybuffer" id="sea1" src="assets/sea1.ply"></a-asset-item>
+        <!--<a-asset-item response-type="arraybuffer" id="sea1" src="assets/sea1.ply"></a-asset-item>-->
         <a-asset-item response-type="arraybuffer" id="sea2" src="assets/sea2.ply"></a-asset-item>
         <a-asset-item response-type="arraybuffer" id="sea3" src="assets/sea3.ply"></a-asset-item>
-        <a-asset-item response-type="arraybuffer" id="sand1" src="assets/sand1.ply"></a-asset-item>
+        <!--<a-asset-item response-type="arraybuffer" id="sand1" src="assets/sand1.ply"></a-asset-item>-->
         <a-asset-item response-type="arraybuffer" id="sand2" src="assets/sand2.ply"></a-asset-item>
         <a-asset-item response-type="arraybuffer" id="sand3" src="assets/sand3.ply"></a-asset-item>
-        <a-asset-item response-type="arraybuffer" id="bushes1" src="assets/bushes1.ply"></a-asset-item>
+        <!--<a-asset-item response-type="arraybuffer" id="bushes1" src="assets/bushes1.ply"></a-asset-item>-->
         <a-asset-item response-type="arraybuffer" id="bushes2" src="assets/bushes2.ply"></a-asset-item>
-        <a-asset-item response-type="arraybuffer" id="chairs1" src="assets/newchairs1_b.ply"></a-asset-item>
+        <!--<a-asset-item response-type="arraybuffer" id="chairs1" src="assets/newchairs1_b.ply"></a-asset-item>-->
         <a-asset-item response-type="arraybuffer" id="chairs2" src="assets/newchairs2_b.ply"></a-asset-item>
         <a-asset-item response-type="arraybuffer" id="chairs3" src="assets/newchairs3_b.ply"></a-asset-item>
         <a-asset-item response-type="arraybuffer" id="seaShadow" src="assets/seaShadow1.ply"></a-asset-item>
@@ -298,11 +298,11 @@
       <a-entity id="beachsea">
       
         <a-entity position="0 0 1650" rotation="0 180 0" scale="0.1 0.1 0.1">
-          <a-pointcloud
+          <!--<a-pointcloud
             position="0 0 0" 
             src="#sea1" 
             size="1"
-          ></a-pointcloud>
+          ></a-pointcloud>-->
           <a-pointcloud
             position="0 0 0" 
             src="#sea2" 
@@ -314,11 +314,11 @@
             size="5"
           ></a-pointcloud>
 
-          <a-pointcloud
+          <!--<a-pointcloud
             position="0 0 0" 
             src="#sand1" 
             size="1"
-          ></a-pointcloud>
+          ></a-pointcloud>-->
           <a-pointcloud
             position="0 0 0" 
             src="#sand2" 
@@ -333,11 +333,11 @@
         </a-entity>
 
         <a-entity position="2000 0 1650" rotation="0 180 0" scale="0.1 0.1 0.1">
-            <a-pointcloud
+          <!--<a-pointcloud
             position="0 0 0" 
             src="#sea1" 
             size="1"
-          ></a-pointcloud>
+          ></a-pointcloud>-->
           <a-pointcloud
             position="0 0 0" 
             src="#sea2" 
@@ -349,11 +349,11 @@
             size="5"
           ></a-pointcloud>
 
-          <a-pointcloud
+          <!--<a-pointcloud
             position="0 0 0" 
             src="#sand1" 
             size="1"
-          ></a-pointcloud>
+          ></a-pointcloud>-->
           <a-pointcloud
             position="0 0 0" 
             src="#sand2" 
@@ -368,11 +368,11 @@
         </a-entity> 
 
         <a-entity position="4000 0 1650" rotation="0 180 0" scale="0.1 0.1 0.1">
-            <a-pointcloud
+          <!--<a-pointcloud
             position="0 0 0" 
             src="#sea1" 
             size="1"
-          ></a-pointcloud>
+          ></a-pointcloud>-->
           <a-pointcloud
             position="0 0 0" 
             src="#sea2" 
@@ -384,11 +384,11 @@
             size="5"
           ></a-pointcloud>
 
-          <a-pointcloud
+          <!--<a-pointcloud
             position="0 0 0" 
             src="#sand1" 
             size="1"
-          ></a-pointcloud>
+          ></a-pointcloud>-->
           <a-pointcloud
             position="0 0 0" 
             src="#sand2" 
@@ -403,11 +403,11 @@
         </a-entity> 
 
         <a-entity position="-2000 0 1650" rotation="0 180 0" scale="0.1 0.1 0.1">
-            <a-pointcloud
+          <!--<a-pointcloud
             position="0 0 0" 
             src="#sea1" 
             size="1"
-          ></a-pointcloud>
+          ></a-pointcloud>-->
           <a-pointcloud
             position="0 0 0" 
             src="#sea2" 
@@ -419,11 +419,11 @@
             size="5"
           ></a-pointcloud>
 
-          <a-pointcloud
+          <!--<a-pointcloud
             position="0 0 0" 
             src="#sand1" 
             size="1"
-          ></a-pointcloud>
+          ></a-pointcloud>-->
           <a-pointcloud
             position="0 0 0" 
             src="#sand2" 
@@ -438,11 +438,11 @@
         </a-entity> 
 
         <a-entity position="-4000 0 1650" rotation="0 180 0" scale="0.1 0.1 0.1">
-            <a-pointcloud
+          <!--<a-pointcloud
             position="0 0 0" 
             src="#sea1" 
             size="1"
-          ></a-pointcloud>
+          ></a-pointcloud>-->
           <a-pointcloud
             position="0 0 0" 
             src="#sea2" 
@@ -454,11 +454,11 @@
             size="5"
           ></a-pointcloud>
 
-          <a-pointcloud
+          <!--<a-pointcloud
             position="0 0 0" 
             src="#sand1" 
             size="1"
-          ></a-pointcloud>
+          ></a-pointcloud>-->
           <a-pointcloud
             position="0 0 0" 
             src="#sand2" 
@@ -470,7 +470,6 @@
             size="5"
           ></a-pointcloud>
 
-
         </a-entity> 
         
       </a-entity>
@@ -480,11 +479,11 @@
         
         <a-entity position="0 0 -400" rotation="0 180 0" scale="0.1 0.1 0.1">
           
-            <a-pointcloud
+            <!--<a-pointcloud
               position="0 0 0" 
               src="#bushes1" 
               size="5"
-            ></a-pointcloud>
+            ></a-pointcloud>-->
 
             <a-pointcloud
               position="0 0 0" 
@@ -496,11 +495,11 @@
         
         <a-entity position="-2000 0 -400" rotation="0 180 0" scale="0.1 0.1 0.1">
         
-            <a-pointcloud
+           <!--<a-pointcloud
             position="0 0 0" 
             src="#bushes1" 
             size="5"
-          ></a-pointcloud>
+          ></a-pointcloud>-->
 
           <a-pointcloud
             position="0 0 0" 
@@ -512,11 +511,11 @@
         
         <a-entity position="-4000 0 -400" rotation="0 180 0" scale="0.1 0.1 0.1">
           
-            <a-pointcloud
+          <!--<a-pointcloud
             position="0 0 0" 
             src="#bushes1" 
             size="5"
-          ></a-pointcloud>
+          ></a-pointcloud>-->
 
           <a-pointcloud
             position="0 0 0" 
@@ -531,11 +530,11 @@
       
       <!--CHAIRS-->
       <a-entity position="0 0 1650" rotation="0 180 0" scale="0.1 0.1 0.1">
-        <a-pointcloud
+        <!--<a-pointcloud
           position="0 0 0" 
           src="#chairs1" 
           size="0.25"
-        ></a-pointcloud>   
+        ></a-pointcloud>-->   
         <a-pointcloud
           position="0 0 0" 
           src="#chairs2" 
@@ -632,6 +631,7 @@
       
         scene.addEventListener('loaded', () => {
             button.innerHTML = "Enter";
+            button.classList.remove('opacityBlink');
             button.addEventListener('click', ()=>{
                 button.style.display = "none";
                 sea.setAttribute('noise-disp', {
