@@ -124,9 +124,18 @@ a{
         color: rgb(206, 142, 142);
     }
     
+    .title{
+        background: black;
+    }
+
+    .subtitle{
+        background: black;
+    }
+    
     #main-wrapper{
         display: block;
         height: 100vh;
+        overflow: hidden;
     }
     #gifWrapper{
         position: absolute;
@@ -148,7 +157,7 @@ a{
     
     #text-wrapper{
         position: absolute;
-        bottom: 10px;
+        bottom: 10vh;
         left: 10px;
     }
 
@@ -168,10 +177,19 @@ a{
     body{
         color: rgb(206, 142, 142);
     }
+
+    .title{
+        background: black;
+    }
+
+    .subtitle{
+        background: black;
+    }
     
     #main-wrapper{
         display: block;
         height: 100vh;
+        overflow: hidden;
     }
     #gifWrapper{
         position: absolute;
@@ -193,7 +211,7 @@ a{
     
     #text-wrapper{
         position: absolute;
-        bottom: 10px;
+        bottom: 10vh;
         left: 10px;
     }
 
@@ -216,9 +234,18 @@ a{
         overflow: hidden;
     }
     
+    .title{
+        background: black;
+    }
+
+    .subtitle{
+        background: black;
+    }
+
     #main-wrapper{
         display: block;
         width: 100vw;
+        overflow: hidden;
     }
     #gifWrapper{
         position: absolute;
@@ -242,7 +269,7 @@ a{
     
     #text-wrapper{
         position: absolute;
-        bottom: 10px;
+        bottom: 10vh;
         left: 10px;
     }
 
@@ -262,10 +289,19 @@ a{
         color: rgb(206, 142, 142);
         overflow: hidden;
     }
+
+    .title{
+        background: black;
+    }
+
+    .subtitle{
+        background: black;
+    }
     
     #main-wrapper{
         display: block;
         width: 100vw;
+        overflow: hidden;
     }
     #gifWrapper{
         position: absolute;
@@ -289,7 +325,7 @@ a{
     
     #text-wrapper{
         position: absolute;
-        bottom: 10px;
+        bottom: 10vh;
         left: 10px;
     }
 
