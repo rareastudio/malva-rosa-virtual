@@ -20,6 +20,7 @@
     <script src="displacement-shader.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js" integrity="sha512-UFPpekaMf0TrCIkPv9mRT3reo/HzSjkOLq57Rtzb+E1ej1TRUOes6J/Ge4uZXyxWA9b4i5DqSZns79YaUoJ2kA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://unpkg.com/aframe-pointcloud-component/dist/aframe-pointcloud-component.min.js"></script>
+    <script src="https://rawgit.com/Ctrl-Alt-Zen/aframe-mobile-controls/master/components/twoway-motion/twoway-motion.js"></script>
 
     
     <script>     
@@ -614,7 +615,7 @@
       <a-entity id="sea"></a-entity>
       
       <a-entity id="rig" position="25 80 420">
-        <a-camera id="camera" look-controls wasd-controls="fly: true"></a-camera>
+        <a-camera id="camera" twoway-motion="speed: 35" look-controls wasd-controls="fly: true"></a-camera>
       </a-entity>
 
      
